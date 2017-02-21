@@ -1,0 +1,73 @@
+<div class=" main-body">
+<form>
+    <div class="row">
+    <div class=" searchInput col-lg-9">
+    <input type="text"  required class="search-box" ng-model="q" placeholder="Search by Name or Genere">
+    <button class="close-icon" type="reset"></button>
+    </div>
+    <div class=" col-lg-3">
+        <div class="dropdown pull-right">
+            <button class="btn btn-default btn-lg filterInput pull-right dropdown-toggle" type="button" data-toggle="dropdown"><span class="glyphicon glyphicon-filter"></span> Sort 
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu"><!--sorting-->
+              <li class="pointer"><a ng-click="orderByField='title_year'; reverseSort = !reverseSort">Year of Release</a></li>
+              <li class="pointer"><a ng-click="orderByField='budget'; reverseSort = !reverseSort">Budget</a></li>
+              <li class="divider"></li>
+              <li class="dropdown-header">Genere</li><!--Foltering-->
+              <li class="pointer"><a ng-click="setGenere('Action')">Action</a></li>
+              <li class="pointer"><a ng-click="setGenere('Adventure')">Adventure</a></li>
+              <li class="pointer"><a ng-click="setGenere('Drama')">Drama</a></li>
+                <li class="pointer"><a ng-click="setGenere('Thriller')">Thriller</a></li>
+                <li class="pointer"><a ng-click="setGenere('Fantasy')">Fantasy</a></li>
+                <li class="pointer"><a ng-click="setGenere('Sci-Fi')">Sci-Fi</a></li>
+            </ul>
+         </div>
+    </div>
+    </div>
+</form>
+<div class="row" ng-init="getData()">
+   <!--<div ng-repeat="movie in movies" class="col-lg-6 profile" style="margin-top:10px">-->
+    <div dir-paginate="movie in movies | filter:q | orderBy:orderByField:reverseSort | itemsPerPage: 4" class="col-lg-6 profile" current-page="currentPage" style="margin-top:10px">
+        <div class="profile-sidebar">
+            <div class="row">
+            <div class="col-lg-4">
+                <div style="margin-top: -20px;">
+                <img src="images/default_profile.png" class="img-responsive img-rounded" alt="">
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-8 pull-left"><h3 class="newMargin" ng-click=goTo(movie.movie_imdb_link)>{{movie.movie_title}} ({{movie.title_year}})</h3></div>
+                    <div class="col-lg-4 pull-right country"><h5>Country: {{movie.country}}</h5></div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 pull-left">Language</div>
+                    <div class="col-lg-9 pull-left">: {{movie.language}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 pull-left">Director</div>
+                    <div class="col-lg-9 pull-left">: {{movie.director_name}}</div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 pull-left">Actor</div>
+                    <div class="col-lg-9 pull-left">: {{movie.actor_1_name}}, {{movie.actor_2_name}}</div>
+                </div>
+            </div>
+       </div><hr style="margin-top: 2px;margin-bottom: 2px;"/>
+       <div class="row">
+            <div class="col-lg-7">
+                <div class="col-lg-2 pull-left">Genere</div>
+                <div class="col-lg-10 pull-left">:{{movie.genres}}</div>
+            </div>
+            <div class="col-lg-5 pull-left">
+                    <div class="col-lg-4 push-right" style="text-align:right">Budget: </div>
+                    <div class="col-lg-8 pull-right" style="text-align:right">USD {{movie.budget}}</div>
+            </div>
+       </div>
+       </div>
+    </div>
+</div>
+<div class="text-center">
+    <dir-pagination-controls boundary-links="true" on-page-change="pageChangeHandler(newPageNumber)" template-url="views/dirPagination.tpl.html"></dir-pagination-controls>
+</div>
+</div>

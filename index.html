@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- angular libraries-->
+    <script src="lib/angular.min.js"></script>
+    <script src="lib/angular-animate.min.js"></script>
+    <script src="lib/angular-ui-router.js"></script>
+    <script src="lib/jquery.js"></script>
+    <script src="lib/bootstrap.min.js"></script>
+    <script src="lib/dirPagination.js"></script>
+
+    <!-- loadingbar -->
+    <script src="lib/loadingBarLib/loading-bar.js"></script>
+    <link href='lib/loadingBarLib/loading-bar.css' rel='stylesheet' />
+    
+    <!--custom css-->
+    <link href='css/app.css' rel='stylesheet' />
+    <link href='css/style.css' rel='stylesheet' />
+
+    <!-- scripts -->
+    
+    <script src="module/module.js"></script>
+    <script src="controllers/movie.controller.js"></script>
+    <script src="services/movie.service.js"></script>
+    </head>
+
+    <body ng-app="movieApp" ng-controller="movieCtrl">
+        <div class="container-fluid">
+            <div ng-init="loadPage()">
+                <div class="headerPatch">
+                <img class="img-responsive" src="images/logo.PNG" alt="logo">
+                </div>
+            </div>
+            <div>
+                <div class="container-fluid" ui-view="main"></div>
+            </div>
+        </div>
+                    
+    </body>
+</html>
